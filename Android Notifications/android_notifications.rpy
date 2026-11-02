@@ -4,7 +4,7 @@
 # on holidays, and when the player opens some apps (while MAS is in PiP or a floating window)
 #
 # Settings are saved in config.json, next to this file
-# Messages are in messages.rpy
+# Messages are in android_notifications_messages.rpy
 
 init -990 python in mas_submod_utils:
     Submod(
@@ -43,7 +43,7 @@ init -5 python in android_notifs:
         """
         for filename in renpy.list_files():
             filename = filename.replace("\\", "/")
-            if filename.endswith("/notifications.rpy") or filename.endswith("/notifications.rpyc"):
+            if filename.endswith("/android_notifications.rpy") or filename.endswith("/android_notifications.rpyc"):
                 return "game/" + os.path.dirname(filename)
 
         return "game/Submods/Android Notifications"

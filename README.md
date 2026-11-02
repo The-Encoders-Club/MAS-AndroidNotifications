@@ -31,12 +31,12 @@ Monika sends you notifications on your phone when:
 3. It has to end up like this:
    ```
    game/Submods/Android Notifications/
-   ├── notifications.rpy        (the submod and its settings)
-   ├── messages.rpy             (the messages)
-   ├── notif/                   (the avatars, PNG)
+   ├── android_notifications.rpy            (the submod and its settings)
+   ├── android_notifications_messages.rpy   (the messages)
+   ├── notif/                               (the avatars, PNG)
    └── tl/
        └── spanish/
-           └── messages-es.rpy  (Spanish translation)
+           └── android_notifications_es.rpy (Spanish translation)
    ```
 4. Open the game. In **Settings, Submods, Android Notifications** you can choose how long Monika waits before writing to you.
 
@@ -47,7 +47,7 @@ The first time it runs, the submod creates a `config.json` file in its folder wi
 - **With Submod Updater Plugin installed:** the game tells you when there is a new version and downloads it from here. Restart the game to apply it.
 - **By hand:** download the new zip and extract it over the old one, overwriting. Your settings (`config.json`) are kept.
 
-If you installed a test version, delete its old files first (`android_notifications.rpy`, `android_notifications_messages.rpy`, `android_notifications_es.rpy` and their `.rpyc`). Two copies of the same translation make Ren'Py complain about a duplicate.
+If you installed a test version that kept `android_notifications_es.rpy` next to the main file (outside `tl/spanish/`), delete that one and its `.rpyc`: two copies of the same translation make Ren'Py complain about a duplicate.
 
 ---
 
@@ -87,7 +87,7 @@ If you set `"test_mode": true` in `config.json`, minutes count as seconds and a 
 
 ## Publishing a version (for maintainers)
 
-1. Raise the `version` in the `Submod(...)` block of `notifications.rpy`.
+1. Raise the `version` in the `Submod(...)` block of `android_notifications.rpy`.
 2. Make a zip that contains the whole `Android Notifications` folder (with the `.rpy` files, `notif/` and `tl/`; **without** `config.json` or `.rpyc` files).
 3. On GitHub, create a **Release** whose **tag is the same as the version** (for example `1.0.1`) and attach that zip as the **only file**. That is what Submod Updater Plugin downloads.
 4. The plugin checks GitHub at most once an hour.

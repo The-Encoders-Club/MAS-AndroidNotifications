@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # Messages of the Android Notifications submod
-# NOTE: Spanish translations are in tl/spanish/messages-es.rpy
+# NOTE: Spanish translations are in tl/spanish/android_notifications_es.rpy
 
 init -1 python in android_notifs:
     #Category -> affection level -> messages
