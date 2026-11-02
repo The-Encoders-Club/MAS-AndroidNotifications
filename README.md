@@ -94,6 +94,12 @@ If you set `"test_mode": true` in `config.json`, minutes count as seconds and a 
 
 ---
 
+## Community
+
+Questions, bugs or ideas? Join the [The Encoders Club Discord server](https://discord.com/servers/the-encoders-club-1191061790835093564).
+
+---
+
 ## License
 
 MIT. Copyright (c) 2026 The Encoders Club.
