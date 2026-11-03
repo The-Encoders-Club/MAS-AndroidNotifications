@@ -386,10 +386,24 @@ init -5 python in android_notifs:
     #Minutes until the test holiday (test mode only)
     TEST_HOLIDAY_MINUTES = 10
 
+    def _isSupported():
+        """
+        Checks if this MAS can show notifications. Only the Android port has the functions of the
+        notification framework, on PC (or an old port) the submod stays quiet instead of failing
+        """
+        return (
+            renpy.android
+            and hasattr(store, "mas_register_farewell_notification")
+            and hasattr(store, "mas_register_holiday_notification")
+        )
+
     def registerNotifs():
         """
         Registers all the notifications of this submod using the current settings
         """
+        if not _isSupported():
+            return
+
         for label, category, delay_key, image, alarm in NORMAL_FAREWELLS:
             store.mas_register_farewell_notification(
                 label,
@@ -518,6 +532,9 @@ screen android_notifs_config():
                 style "confirm_prompt"
                 xalign 0.5
 
+            if not renpy.android:
+                text _("These notifications only work on Android.") style "confirm_prompt_text" xalign 0.5
+
             null height 5
 
             vbox:
@@ -528,11 +545,13 @@ screen android_notifs_config():
 
                 textbutton _("Holiday notifications"):
                     action Function(store.android_notifs.toggleSetting, "holidays_enabled")
-                    selected store.android_notifs.config["holidays_enabled"]
+                    selected store.android_notifs.config["holidays_enabled"] and renpy.android
+                    sensitive renpy.android
 
                 textbutton _("Follow-ups after you reply"):
                     action Function(store.android_notifs.toggleSetting, "followups_enabled")
-                    selected store.android_notifs.config["followups_enabled"]
+                    selected store.android_notifs.config["followups_enabled"] and renpy.android
+                    sensitive renpy.android
 
             null height 5
             text _("Notification time after each farewell:") style "confirm_prompt_text" text_align 0.0
@@ -559,6 +578,7 @@ screen android_notifs_time_setting(setting_key, setting_label):
             foreground None
             padding (8, 4, 8, 4)
             action Function(store.android_notifs.cycleSetting, setting_key, -1)
+            sensitive renpy.android
 
         text store.android_notifs.formatSetting(setting_key):
             style "confirm_prompt_text"
@@ -571,6 +591,7 @@ screen android_notifs_time_setting(setting_key, setting_label):
             foreground None
             padding (8, 4, 8, 4)
             action Function(store.android_notifs.cycleSetting, setting_key, 1)
+            sensitive renpy.android
 
         text setting_label:
             style "confirm_prompt_text"
