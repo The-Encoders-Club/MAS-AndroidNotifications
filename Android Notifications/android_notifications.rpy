@@ -11,7 +11,7 @@ init -990 python in mas_submod_utils:
         author="Slytharbez",
         name="Android Notifications",
         description=_("Monika sends you notifications on Android when you leave with a farewell, on holidays, and when you open some apps."),
-        version="1.0.0",
+        version="1.0.1",
         settings_pane="android_notifs_settings"
     )
 
