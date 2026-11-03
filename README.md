@@ -7,7 +7,8 @@ Monika sends you notifications on your phone when:
 - a special date arrives (Christmas, New Year, Valentine's Day, Halloween, Monika's birthday, your birthday and your anniversaries),
 - you open certain apps while MAS is in picture-in-picture mode or a floating window.
 
-**It only does something in the Android port of MAS.** On PC it installs without problems, but it does nothing.
+**It only does something in the Android port of MAS.** On PC it installs without problems and stays quiet: the settings window shows a note and its controls are disabled.
+
 
 ---
 
