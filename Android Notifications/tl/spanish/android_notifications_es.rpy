@@ -2575,9 +2575,6 @@ translate spanish strings:
     old "Android Notifications"
     new "Notificaciones de Android"
 
-    old "Monika sends you notifications on Android when you leave with a farewell, on holidays, and when you open some apps."
-    new "Monika te envía notificaciones en Android cuando te despides, en días festivos y cuando abres algunas apps."
-
     old "These notifications only work on Android."
     new "Estas notificaciones solo funcionan en Android."
 

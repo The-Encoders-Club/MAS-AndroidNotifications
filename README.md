@@ -19,24 +19,26 @@ Monika sends you notifications on your phone when:
 - Optional: [Submod Updater Plugin](https://github.com/Booplicate/MAS-Submods-SubmodUpdaterPlugin), to update this submod from inside the game.
   - It is optional on purpose: without it the submod works the same and is updated by hand.
   - On Android you do not need the plugin's `lib` folder (it holds SSL files for Windows, Linux and Mac, and the port already ships its own SSL). Copy only its `game` folder.
-  - If you would rather require it, add `dependencies={"Submod Updater Plugin": ("1.0.0", "99.99.99")}` to the `Submod(...)` block. MAS will then not load this submod without the plugin.
+  - If you would rather require it, add `dependencies={"Submod Updater Plugin": ("1.0.0", "99.99.99")}` to the `Submod(...)` block of `header.rpy`. MAS will then not load this submod without the plugin.
 
 ---
 
 ## Installation
 
-1. Download the latest `Android Notifications.zip` from [Releases](https://github.com/The-Encoders-Club/NotifSubmodTemplate/releases/latest).
+1. Download the latest `Android Notifications.zip` from [Releases](https://github.com/The-Encoders-Club/MAS-AndroidNotifications/releases/latest).
 2. Extract it inside the `game/Submods/` folder of Monika After Story.
    - On Android the folder is `Internal storage/Monika After Story/game/Submods/`.
    - On PC it is `DDLC/game/Submods/`.
 3. It has to end up like this:
    ```
    game/Submods/Android Notifications/
+   ├── header.rpy                           (name, version and updater of the submod)
    ├── android_notifications.rpy            (the submod and its settings)
    ├── android_notifications_messages.rpy   (the messages)
    ├── notif/                               (the avatars, PNG)
    └── tl/
        └── spanish/
+           ├── header.rpy                   (Spanish translation of the description)
            └── android_notifications_es.rpy (Spanish translation)
    ```
 4. Open the game. In **Settings, Submods, Android Notifications** you can choose how long Monika waits before writing to you.
@@ -88,7 +90,7 @@ If you set `"test_mode": true` in `config.json`, minutes count as seconds and a 
 
 ## Publishing a version (for maintainers)
 
-1. Raise the `version` in the `Submod(...)` block of `android_notifications.rpy`.
+1. Raise the `version` in the `Submod(...)` block of `header.rpy`.
 2. Make a zip that contains the whole `Android Notifications` folder (with the `.rpy` files, `notif/` and `tl/`; **without** `config.json` or `.rpyc` files).
 3. On GitHub, create a **Release** whose **tag is the same as the version** (for example `1.0.1`) and attach that zip as the **only file**. That is what Submod Updater Plugin downloads.
 4. The plugin checks GitHub at most once an hour.
