@@ -479,8 +479,8 @@ init 5 python in android_notifs:
     registerNotifs()
 
 #START: Settings screens
-#Shown in the Submods menu
-screen android_notifs_settings():
+#Shown in the Submods menu, through the android_notifs_settings screen of header.rpy
+screen android_notifs_settings_main():
     vbox:
         box_wrap False
         xfill True
