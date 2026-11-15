@@ -18,7 +18,7 @@ Monika sends you notifications on your phone when:
 - The notifications permission for the app. For the app reactions, also the usage access or accessibility permission (the app asks for it).
 - Optional: [Submod Updater Plugin](https://github.com/Booplicate/MAS-Submods-SubmodUpdaterPlugin), to update this submod from inside the game.
   - It is optional on purpose: without it the submod works the same and is updated by hand.
-  - On Android you do not need the plugin's `lib` folder (it holds SSL files for Windows, Linux and Mac, and the port already ships its own SSL). Copy only its `game` folder.
+  - On Android copy only the plugin's `Submod Updater Plugin` folder into `game/Submods/`. Do not copy its `lib` folder (SSL files for Windows, Linux and Mac; the port already ships its own SSL), and do not copy its `game/python-packages` folder: it carries an old `certifi` that replaces the one of the game and makes it log a `set_parent_dir` error.
   - If you would rather require it, add `dependencies={"Submod Updater Plugin": ("1.0.0", "99.99.99")}` to the `Submod(...)` block of `header.rpy`. MAS will then not load this submod without the plugin.
 
 ---
@@ -51,6 +51,11 @@ The first time it runs, the submod creates a `config.json` file in its folder wi
 - **By hand:** download the new zip and extract it over the old one, overwriting. Your settings (`config.json`) are kept.
 
 If you installed a test version that kept `android_notifications_es.rpy` next to the main file (outside `tl/spanish/`), delete that one and its `.rpyc`: two copies of the same translation make Ren'Py complain about a duplicate.
+
+### If something looks wrong
+
+- **The Submods menu says "Android Notifications is not installed correctly", or the game stops with "Screen android_notifs_settings is not known":** the folder is incomplete, or it is mixed with files of an older test version. Close the game, delete the `Android Notifications` folder and any loose `notifications.rpy`, `messages.rpy`, `notif` or `tl` folder left directly inside `game/Submods/`, extract the zip again and open the game. The folder must end up as `game/Submods/Android Notifications/` with `header.rpy` and `android_notifications.rpy` directly inside.
+- **The submod does not appear in the Submods list:** `header.rpy` is missing or is not inside the folder of the submod. Check the list above.
 
 ---
 
@@ -92,7 +97,7 @@ If you set `"test_mode": true` in `config.json`, minutes count as seconds and a 
 
 1. Raise the `version` in the `Submod(...)` block of `header.rpy`.
 2. Make a zip that contains the whole `Android Notifications` folder (with the `.rpy` files, `notif/` and `tl/`; **without** `config.json` or `.rpyc` files).
-3. On GitHub, create a **Release** whose **tag is the same as the version** (for example `1.0.1`) and attach that zip as the **only file**. That is what Submod Updater Plugin downloads.
+3. On GitHub, create a **Release** whose **tag is the same as the version** (for example `1.0.2`) and attach that zip as the **only file**. That is what Submod Updater Plugin downloads.
 4. The plugin checks GitHub at most once an hour.
 
 ---
